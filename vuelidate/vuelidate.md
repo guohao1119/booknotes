@@ -35,6 +35,8 @@
 
 #### 基础表单
     对于想要校验的每一个值，需要在validations的选项中创建一个key值。
+
+    ![Image text](https://github.com/guohao1119/booknotes/blob/master/vuelidate/images/vuelidate1.png)
         
     
         
