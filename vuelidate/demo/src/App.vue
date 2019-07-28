@@ -72,7 +72,9 @@ export default {
     },
     repassword: {
       sameAsPassword: sameAs('password')
-    }
+    },
+    // Validation Groups
+    validationGroup: ['name', 'age']
   },
   watch: {
     name() {
