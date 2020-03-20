@@ -31,7 +31,7 @@
     使用grunt.registerTask注册一个任务
     
     然后在命令行就可以执行该任务
-    npm run grunt foo
+    yarn grunt foo
     
 #### 增加描述
 
@@ -40,7 +40,7 @@
         console.log('bar')
     })
     
-    通过npm run grunt --help查看帮助信息，会出现在available tasks中，任务描述会在任务名后显示
+    通过yarn grunt --help查看帮助信息，会出现在available tasks中，任务描述会在任务名后显示
     
 #### 默认任务
 
@@ -49,7 +49,7 @@
         console.log('default')
     })
     
-    npm run grunt即可
+    yarn grunt即可
     
     默认任务列表
     // 在默认任务的第二个参数中传入一个方数组，数组中是任务名称，则会依次执行这些任务
@@ -78,7 +78,7 @@
     grunt.registerTask('default', ['foo', 'bad', 'bar'])
     
     如果需要即使失败也继续执行，则需要加上--force
-    npm run grunt default --force
+    yarn grunt default --force
     
     // 如果需要标记异步任务执行失败，则只需要在执行完毕的回调函数中传入false参数即可
     grunt.registerTask('async-bad', function(){
@@ -135,8 +135,8 @@
     console.log(`target: ${this.target}, data: ${this.data}`)
     })
     
-    执行任务时 npm run grunt build
-    如果只执行某个子任务： npm run grunt build:taska
+    执行任务时 yarn grunt build
+    如果只执行某个子任务： yarn grunt build:taska
     
 #### 使用插件
 
@@ -170,7 +170,7 @@
         }
     })
     4 执行
-    npm run grunt clean // 注意这里执行的是配置中的clean，而不是grunt-clean
+    yarn grunt clean // 注意这里执行的是配置中的clean，而不是grunt-clean
     
 #### grunt-sass
 
@@ -196,7 +196,7 @@
         }
     })
     4 执行
-    npm run grunt sass
+    yarn grunt sass
     此时会发现报错了：必须要配置implementation选项
     
     5 引入sass模块
@@ -248,7 +248,7 @@
       }
     }
     4 执行
-    npm run grunt babel
+    yarn grunt babel
     
 #### grunt-contrib-watch
 
@@ -279,7 +279,7 @@
     grunt.registerTask('default', ['babel', 'sass', 'watch'])
     
     4 执行
-    npm run grunt
+    yarn grunt
     
 #### 完整示例
     
@@ -349,3 +349,4 @@
     但是整个配置过程还是比较复杂，一些高级应用还需要通过深入研究官方文档和不断实践来学习。
     grunt的学习就暂时告一段落啦~
     
+    备注：自测过程中使用cnpm安装相关依赖，使用yarn执行grunt命令，发现直接使用npm run grunt是不行的，看了官网应该是需要全局安装grunt-cli后可以直接使用grunt命令
