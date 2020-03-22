@@ -80,6 +80,6 @@
     gulp tasksA
     gulp tasksB
     
-    [series](https://github.com/guohao1119/booknotes/blob/master/images/gulp-series-task.png)
+[series](https://github.com/guohao1119/booknotes/blob/master/images/gulp-series-task.png)
     
-    [parallel](https://github.com/guohao1119/booknotes/blob/master/images/gulp-parallel-task.png)
+[parallel](https://github.com/guohao1119/booknotes/blob/master/images/gulp-parallel-task.png)
