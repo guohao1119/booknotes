@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水平垂直居中布局2</title>
+  <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    /* 子绝父相 */
+    /* 子级要有高度和宽度 */
+    .parent {
+      position: relative;
+      height: 100%;
+    }
+    .child {
+      position: absolute;
+      width: 200px;
+      height: 100px;  
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    .child {
+      background-color: darkgreen;
+      line-height: 100px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="child">
+      我是要居中的div
+    </div>
+  </div>
+</body>
+</html>
