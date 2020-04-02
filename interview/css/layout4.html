@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布局方案4-flex</title>
+  <style>
+    html, body {
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .left, .right {
+      flex: 0 0 200px;
+      min-height: 200px;
+      background-color: lightblue;
+    }
+    .center {
+      flex: 1;
+      min-height: 400px;
+      background-color: lightsalmon;
+    }
+  </style>
+</head>
+<body>
+  <h2>利用flex布局</h2>
+  <p>1 父级使用flex，高度100%，设置主轴的排序方式space-between</p>
+  <p>2 左右两栏通过flex设置宽度，flex: 0 0 200px 表示既不放大，也不缩小，占据200px的宽度</p>
+  <p>3 中间栏设置flex: 1 占据剩余位置</p>
+  <p>4 不需要清除浮动</p>
+  <div class="container clearfix">
+    <div class="left"></div>
+    <div class="center"></div>
+    <div class="right"></div>
+  </div>
+</body>
+</html>

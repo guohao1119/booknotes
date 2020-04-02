@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布局方案3-calc</title>
+  <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    .center, .left, .right {
+      float: left;
+    }
+    .center {
+      background-color: lightsalmon;
+    }
+    .left, .right {
+      width: 200px;
+      min-height: 200px;
+      background-color: lightblue;
+    }
+    .center {
+      width: calc(100% - 400px);
+      min-height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <h2>利用css计算器calc</h2>
+  <p>1 3列分别是左中右顺序排列</p>
+  <p>2 三个区域左浮动</p>
+  <p>3 左右两栏宽度固定</p>
+  <p>4 中间栏宽度通过calc(100% - 两边栏宽度和)计算</p>
+  <p>5 要清除浮动</p>
+  <div class="container clearfix">
+    <div class="left"></div>
+    <div class="center"></div>
+    <div class="right"></div>
+  </div>
+</body>
+</html>

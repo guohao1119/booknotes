@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布局方案5-绝对定位</title>
+  <style>
+    html, body {
+      overflow: hidden;
+    }
+    .container {
+      position: relative;
+      height: 100%;
+    }
+    .center {
+      margin: 0 200px;
+      min-height: 400px;
+      background-color: lightsalmon;
+    }
+    .left, .right {
+      position: absolute;
+      top: 0;
+      width: 200px;
+      min-height: 200px;
+      background-color: lightblue;
+    }
+    .left {
+      left: 0
+    }
+    .right {
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>利用绝对定位布局</h2>
+  <p>1 父级使用相对定位</p>
+  <p>2 中间栏左右margin 200px</p>
+  <p>3 左右两栏绝对定位，宽度200px，top为0</p>
+  <p>4 左侧栏left为0，右侧栏right为0</p>
+  <div class="container clearfix">
+    <div class="left"></div>
+    <div class="center"></div>
+    <div class="right"></div>
+  </div>
+</body>
+</html>

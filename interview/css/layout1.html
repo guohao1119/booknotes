@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布局方案1-圣杯布局</title>
+  <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    .container {
+      height: 100%;
+      padding: 0 200px;
+    }
+    .center {
+      width: 100%;
+      min-height: 300px;
+      background-color: lightsalmon;
+    }
+    .left, .right, .center {
+      float: left;
+    }
+    .left, .right {
+      width: 200px;
+      min-height: 200px;
+      background-color: lightblue;
+    }
+    .left {
+      position: relative;
+      left: -200px;
+      margin-left: -100%;
+    }
+    .right {
+      margin-right: -200px;
+    }
+  </style>
+</head>
+<body>
+  <h2>圣杯布局： 浮动和负margin</h2>
+  <p>1 container: 宽度百分百，padding出两边的空白距离分别放置左右两栏</p>
+  <p>2 center: 内容区域，宽度百分百</p>
+  <p>3 center,left,right: 左浮动，保持一行</p>
+  <p>4 设置左右两栏的宽度与父级留下的空白一致</p>
+  <p>5 左侧：使用margin-left: -100%将左侧栏移动到一行的最左侧</p> 
+  <p>6 左侧：再利用相对定位和left:-200px将左侧栏移动到空白位置</p> 
+  <p>7 右侧：margin-right:-200px使右侧移动端空白位置</p>
+  <p>8 要清除浮动</p>
+  <div class="container clearfix">
+    <div class="center"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</body>
+</html>
