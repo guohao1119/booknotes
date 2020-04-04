@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 变量提升：
+    // 在当前作用域，在代码执行前，会把var和function定义的变量提前声明和赋值
+    // 会把var定义的变量提前声明
+    // 会把function定义的变量提前声明和赋值
+
+    // 1 定义构造器（声明一个Foo）
+    function Foo () {
+      getName = function () {
+        console.log(1)
+      }
+      return this
+    }
+    // 2 定义构造器的静态方法
+    Foo.getName = function () {
+      console.log(2)
+    }
+    // 3 定义构造器的原型中的方法
+    Foo.prototype.getName = function () {
+      console.log(3)
+    }
+    // 4 声明变量getName并赋值（声明会被提升）
+    var getName = function () {
+      console.log(4)
+    }
+    // 5 声明方法getName(声明和赋值都会被提升)
+    function getName () {
+      console.log(5)
+    }
+    // 构造器的静态方法
+    Foo.getName() //2
+    // 先声明了变量getName，又声明和赋值方法getName，又在第4步赋值，所以是4
+    getName() // 4
+    // 执行Foo()，会在Foo中重写全局的getName方法，然后调用getName时由于没有调用对象，所以调用的就是全局的方法，打印1
+    Foo().getName() // 1
+    // 全局的方法已经被重写为1
+    getName() // 1
+    // new Foo和 .getName，一个是无参数new，一个是函数调用，函数调用优先级高，先执行
+    // Foo.getName得到funtion(){console.log(2)}
+    // 然后new 这个函数，相当于执行该函数，输出2
+    new Foo.getName() 
+    // new Foo()和.getName都是19级，从左到右执行
+    //  new Foo()得到Foo的实例，实例调用getName方法，从原型上拿到该方法，所以输出3
+    new Foo().getName()
+    // 连续的new，从右向左执行
+    // new Foo()得到Foo的实例
+    // 实例调用getName，从原型上拿到该方法
+    // new执行该方法，输出3
+    new new Foo().getName()
+
+    // 运算符优先级
+    // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+    // 20 () 圆括号的内的代码优先级最高
+    // 19级的如果有多个，则从左到右
+    // 19 . 成员访问 obj.a
+    // 19 需计算的成员访问 obj['key']
+    // 19 new (带参数列表)  new Func()
+    // 19 函数调用
+    // 18级的如果有多个，则从右到左
+    // 18 new (无参数列表)  new Func
+    // 17 后置递增，后置递减 a++ a--
+
+  </script>
+</body>
+</html>

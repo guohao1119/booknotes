@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    let obj1 = {
+      a: 100,
+      b: [1, 2, 3],
+      c: {
+        x: 10
+      },
+      d: /^\d+$/,
+      e: new Date(),
+      f: null,
+      g: undefined,
+      h: function() {},
+      i: new Error(),
+      j: Symbol(),
+      __proto__: {
+        toString: 2
+      }
+    }
+    // 打印obj1，__proto__上的toString不会打印出来
+    console.log(obj1)
+    let obj2 = {}
+
+    // 通过一次遍历将obj1的属性复制到obj2上
+    for (let key in obj1) {
+      // __proto__上的toString不属于obj1的ownProperty
+      if (obj1.hasOwnProperty(key)) {
+        console.log('own property: ' + key)
+        obj2[key] = obj1[key]
+      } else {
+        console.log('other property: ' + key)
+      }
+    }
+    // 浅拷贝完成
+    console.log(obj2)
+    // 修改拷贝后的对象中的引用类型的属性值，原对象对应的属性值也发生变化
+    obj2['c']['x'] = 222
+    console.log(obj1.c === obj2.c) // 拷贝后的两个对象的引用类型的属性仍然相等
+    // 原因：如果拷贝时的属性值是引用类型，那么会将该引用对应的内存地址复制一份到新的对象中
+    // 修改新对象的该属性值，相当于修改了同一个内存地址的内容，原对象对应的属性值也发生变化
+    // 这就会导致两个对象互相干扰，在实际项目中通常需要深拷贝，将两个对象完全解耦
+
+    // MDN：JavaScript并没有保护hasOwnProperty这个属性名，所以有可能被重写
+    // 所以使用原型链上的会更稳妥
+    // Object.prototype.hasOwnProperty.call(obj1, key)
+    for (let key in obj1) {
+      // __proto__上的toString不属于obj1的ownProperty
+      if (Object.prototype.hasOwnProperty.call(obj1, key)) {
+        console.log('own property: ' + key)
+        obj2[key] = obj1[key]
+      } else {
+        console.log('other property: ' + key)
+      }
+    }
+
+    // 方法2
+    let obj3 = {
+      ...obj1
+    }
+    console.log(obj3)
+
+    // 深拷贝
+    // 由于JSON.stringify在遇到对象、正则、方法时会进行特殊处理，所以这种方式会有一些问题
+    // 对象
+
+    let obj4 = JSON.parse(JSON.stringify(obj1))
+    // 正则会被转换为'{}'
+    console.log(obj1.d, JSON.stringify(obj1.d))
+    // 日期会被转为时间字符串
+    console.log(obj1.e, JSON.stringify(obj1.e))
+    // null会被转为'null'
+    console.log(obj1.f, JSON.stringify(obj1.f))
+    // undefined会被转为undefined,此时再调用JSON.parse会被过滤掉
+    console.log(obj1.g, JSON.stringify(obj1.g))
+    // 方法会被转为undefined,此时再调用JSON.parse会被过滤掉
+    console.log(obj1.h, JSON.stringify(obj1.h))
+    // new Error() 会被转换为'{}'
+    console.log(obj1.i, JSON.stringify(obj1.i))
+    // Symbol会被转为undefined,此时再调用JSON.parse会被过滤掉
+    console.log(obj1.j, JSON.stringify(obj1.j))
+    console.log(obj4)
+
+    // 深拷贝2
+    function deepClone (obj) {
+      // 拿到obj后先过滤特殊情况
+      // 如果是null或者不是对象类型，直接返回obj
+      if (obj === null || typeof obj !== 'object') return obj
+
+      // 处理对象中的特殊类型
+      // 如果是正则表达式
+      if (obj instanceof RegExp) {
+        return new RegExp(obj)
+      }
+      if (obj instanceof Date) {
+        return new Date(obj)
+      }
+      // 一般不需要考虑Error对象
+      if (obj instanceof Error) {
+        return new Error(obj)
+      }
+
+      // 这里没有直接创建一个空对象 let newObj = {}
+      // 目的：拷贝后的新对象与原对象保持相同的所属类
+      let newObj = new obj.constructor
+
+      // 如果obj是普通对象，遍历处理每一个属性，递归调用deepClone，将结果放入新对象的相同属性中
+      for (let key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          newObj[key] = deepClone(obj[key])
+        }
+      }
+      return newObj
+    }
+    let obj5 = deepClone(obj1)
+    console.log(obj5)
+    console.log(obj1 === obj5) // false
+    console.log(obj1.c === obj5.c) // false
+  </script>
+</body>
+</html>
