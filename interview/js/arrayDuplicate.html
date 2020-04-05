@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组去重</title>
+</head>
+<body>
+  <script>
+    let arr = [12, 23, 12, 15, 25, 15, 25, 14, 16]
+
+    // Set
+    let arr1 = [...new Set(arr)]
+    console.log(arr1);
+
+    let arr2 = Array.from(new Set(arr))
+    console.log(arr2);
+    
+    // 循环放入新数组
+    let arr3 = []
+    for (let i = 0, l = arr.length; i < l; i++) {
+      // if (arr3.indexOf(arr[i]) === -1) {
+      if (!arr3.includes(arr[i])) {
+        arr3.push(arr[i])
+      }
+    }
+    console.log(arr3);
+
+    // 循环放入新对象
+    let obj = {}
+    let arr4 = []
+    for (let i = 0, l = arr.length; i < l; i++) {
+      if (!obj[arr[i]]) {
+        obj[arr[i]] = true
+        arr4.push(arr[i])
+      }
+    }
+    console.log(arr4);
+    
+    
+  </script>
+</body>
+</html>

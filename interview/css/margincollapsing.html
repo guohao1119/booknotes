@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外边距折叠</title>
+  <style>
+    div {
+      width: 300px;
+      height: 200px;
+      border: 1px solid lightblue;
+      margin: 30px;
+    }
+    .div1 {
+      margin: 40px;
+    }
+    .div2 {
+      margin: 50px;
+    }
+  </style>
+</head>
+<body>
+  <p>1 两个div的公共样式设置margin：30px</p>
+  <p>2 div1设置margin：40px</p>
+  <p>3 div2设置margin：50px</p>
+  <p>4 最终两个div的间距是50px</p>
+  <p>MDN: </p>
+  <div class="div1"></div>
+  <div class="div2"></div>
+</body>
+</html>

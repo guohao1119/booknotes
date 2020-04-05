@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒子模型</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 200px;
+      padding: 15px;
+      border: 10px solid lightgreen;
+      margin: 0 auto;
+    }
+    .contentbox {
+      background-color: lightblue;
+    }
+    .borderbox {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="box contentbox" id="box1"></div>
+  <br>
+  <div class="box borderbox" id="box2"></div>
+  <script>
+    box1.innerHTML = `
+      <p>div width: ${box1.offsetWidth} px</p>
+      <p>div height: ${box1.offsetHeight} px</p>
+    `
+    box2.innerHTML = `
+      <p>div width: ${box2.offsetWidth} px</p>
+      <p>div height: ${box2.offsetHeight} px</p>
+    `
+  </script>
+</body>
+</html>

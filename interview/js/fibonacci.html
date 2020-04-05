@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>斐波那契数列</title>
+</head>
+<body>
+  <script>
+    // 原理：
+    // 斐波那契数列的形式就是一个数的值是它前2和前1数值的和
+    // 所以可以先在数组中放入初始的两个元素，从而避免数组越界
+    // 特殊处理前两个元素即可
+    function fabonacci (n) {
+      // 前两个元素都是1
+      if (n <= 1) {
+        return 1
+      }
+      // 将两个1放入数组
+      let arr = [1, 1]
+      // 需要遍历n-1次
+      let i = n - 1
+      while(i > 0) {
+        // 每次遍历，将当前数组中的最后两个元素相加，放入数组最后
+        arr.push(arr[arr.length - 2] + arr[arr.length - 1])
+        i--
+      }
+      // arr就是斐波那契数列
+      console.log(arr)
+      // 返回最大值
+      return arr[arr.length - 1]
+    }
+    console.log(fabonacci(5))
+
+    // 定义递归方法，每次递归，将下一个值赋值给当前值，将当前值和下一个值的结果赋值给下一个值
+    // 递归n次后，返回当前值
+    function fabonacci1 (n) {
+      function fn (n, curr, next) {
+        if (n === 0) {
+          return curr
+        } else {
+          return fn(n - 1, next, curr + next)
+        }
+      }
+      return fn(n, 1, 1)
+    }
+    console.log(fabonacci1(5));
+    
+    function fabonacci2 (n) {
+      if ( n <= 2) {
+        return 1
+      }
+      return fabonacci(n - 2) + fabonacci(n - 1)
+    }
+    console.log(fabonacci2(5));
+    
+  </script>
+</body>
+</html>
